@@ -1,0 +1,78 @@
+<!--
+/**
+ * Copyright © MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+<div class="summary__cell">
+    <dl class="collapsible mageworx-giftcards"
+        id="mageworx-giftcards-container"
+        data-bind="blockLoader: isLoading, css: {'collapsible--expanded': contentVisible}">
+        <dt class="collapsible__header" data-bind="click: toggleCollapsible">
+            <span class="link link--variation-accent link--variation-strong"
+                  data-bind="i18n: 'Gift Cards'"></span>
+        </dt>
+
+        <dd class="collapsible__content">
+            <div class="form form--condensed">
+                <!-- ko foreach: getRegion('messages') -->
+                <!-- ko template: getTemplate() --><!-- /ko -->
+                <!--/ko-->
+
+                <form class="form"
+                      id="mageworx-giftcards-form"
+                      data-bind="blockLoader: isLoading">
+
+                    <div class="control-group">
+
+                        <div class="input">
+                            <label class="input__label" data-bind="i18n: 'Redeem and use your Gift Card now'"></label>
+                            <input class="input__control"
+                                   type="text"
+                                   id="mageworx-giftcard-code"
+                                   name="giftcard_code"
+                                   data-validate="{'required-entry':true}"
+                                   data-bind="value: giftCartCodeFieldValue, attr:{placeholder: $t('Redeem and use your Gift Card now')} "/>
+                        </div>
+                        <button class="button button--primary"
+                                type="submit"
+                                data-bind="'value': $t('Activate'), click: activateGiftCard, i18n: $t('Activate')">
+                        </button>
+                    </div>
+
+                    <button class="button"
+                            type="button"
+                            data-bind="'value': $t('Check Gift Card status'), click: checkGiftCardInfo, style: {'display': giftCardInfo.isChecked ? 'block' : 'none'}"
+                    >
+                        <span><!-- ko i18n: 'Check Gift Card status'--><!-- /ko --></span>
+                    </button>
+
+                </form>
+
+                <!-- ko if: giftCardInfo.isChecked && giftCardInfo.isValid -->
+                    <div class="form__field">
+                        <div id="giftcard-info">
+                            <dl class="giftcard-info-from-template">
+                                <dt><!-- ko i18n: 'Status:'--><!-- /ko --></dt>
+                                <dd><!-- ko i18n: giftCardInfo.status--><!-- /ko --></dd>
+
+                                <dt><!-- ko i18n: 'Current Balance:'--><!-- /ko --></dt>
+                                <dd data-bind="html: giftCardInfo.balance"></dd>
+
+                                <dt><!-- ko i18n: 'Valid till:'--><!-- /ko --></dt>
+                                <dd><!-- ko text: giftCardInfo.validTill--><!-- /ko --></dd>
+                            </dl>
+                        </div>
+                    </div>
+                <!-- /ko -->
+
+                <!-- ko foreach: getRegion('applied-gift-cards-info') -->
+                    <div class="form__field">
+                        <!-- ko template: getTemplate() --><!-- /ko -->
+                    </div>
+                <!--/ko-->
+
+            </div>
+        </dd>
+    </dl>
+</div>
