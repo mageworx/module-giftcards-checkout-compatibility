@@ -1,0 +1,19 @@
+.mageworx-giftcards .form__field {
+    margin-bottom: 0!important;
+}
+
+.mageworx-giftcards .giftcards-applied-template {
+    margin-bottom: -10px;
+}
+
+#mageworx-giftcard-code-error {
+    margin-top: -15px!important;
+}
+
+#mageworx-giftcard-code {
+    margin-bottom: 22px;
+}
+
+#mageworx-giftcard-activate-button {
+    margin-bottom: 22px;
+}
